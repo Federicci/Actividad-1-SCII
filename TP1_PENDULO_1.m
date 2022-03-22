@@ -11,7 +11,7 @@ m=0.1; F=0.1; l=0.6; g=9.8; M=0.5;
 X01=[0 0 -0.01 0];
 X02=[0 0 3.01 0];
 deltat=10^-4;
-ts=10;
+ts=10;%Máximo 0.2 seg. Los modelos lineales y no lineales deberían coincidir
 u=1;
 
 t=0:deltat:(ts-deltat);
