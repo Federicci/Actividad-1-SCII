@@ -1,20 +1,19 @@
 clc, clear all, close all;
 
-%Motor con carga
-%Variables de estado: x1=ia, x2=wr, x3=titat
-
 %{
 -------------------------------------------------------------------------
                     Comentarios/conclusiones/dudas
 Agregar en el informe la obtención del sistema linealizado en el equilibrio
 X=[0 0 0 0]t
+El avión no tiene dificultad en mantener altura aunque se reduzca
+drásticamente la velocidad, sistema muy simplificado
 -------------------------------------------------------------------------
 %}
 
 w=2;
 a=0.05;
 b=5;
-c=50;
+c=1;
 deltat=10^-3;
 ts=20;
 u=0;

@@ -6,8 +6,6 @@ clc, clear all, close all;
 %{
 -------------------------------------------------------------------------
                     Comentarios/conclusiones/dudas
-Para elegir entre distintas salidas podemos cambiar entre distintas
-ecuaciones de salida?
 
 
 -------------------------------------------------------------------------
@@ -21,7 +19,7 @@ R=4700; %[ohm]
 %Matrices
 A=[-R/L -1/L; 1/C 0];
 B=[1/L; 0];
-C=[R; 0]';
+C=[0; 1]';
 D=0;
 
 %Definicion de la ecuación de estado y de salida
@@ -29,8 +27,8 @@ sys=ss(A,B,C,D)
 
 %Definicion de la entrada
 u=zeros(1,1000);
-paso=0.1/1000;
-t=0:paso:(0.1-paso);
+paso=0.01/1000;
+t=0:paso:(0.01-paso);
 
 signo=false;
 for i=100:1:1000
@@ -48,7 +46,14 @@ plot(t,u)
 
 %Simulación
 lsim(sys,u,t);
-%Como la salida es la tensión en la resistencia, y la corriente baja
-%exponencialmente en cada transitorio debido al capacitor, se observan
-%picos de tensión que se reducen exponencialmente debido a la relación
-%lineal entre la tensión de la resistencia y la corriente que la atraviesa
+%Se observa la carga del capacitor que no llega a completarse
+
+%Para ver la corriente:
+C=[1; 0]';
+sys=ss(A,B,C,D);
+figure
+[ysim tsim]=lsim(sys,u,t); %el orden de magnitud de la corriente es mucho
+%menor al voltaje de entrada, grafico por separado
+plot(tsim,ysim);
+%se observa la caida exponencial de la corriente debido a la carga del
+%capacitor 
