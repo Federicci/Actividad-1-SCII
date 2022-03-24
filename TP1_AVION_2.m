@@ -3,8 +3,7 @@ clc, clear all, close all;
 %{
 -------------------------------------------------------------------------
                     Comentarios/conclusiones/dudas
-Agregar en el informe la obtención del sistema linealizado en el equilibrio
-X=[0 0 0 0]t
+
 El avión no tiene dificultad en mantener altura aunque se reduzca
 drásticamente la velocidad, sistema muy simplificado
 -------------------------------------------------------------------------
@@ -16,7 +15,7 @@ b=5;
 c=1;
 deltat=10^-3;
 ts=20;
-u=0;
+u=-0.1;
 h0=1000; %Altura inicial
 
 alpha_0=0; tita_0=0; titadif_0=0; h_0=0; %Cond. iniciales
@@ -37,3 +36,6 @@ end
 
 figure
 plot(t,valores(4,:)+h0);
+ylabel('Altura');
+xlabel('Tiempo');
+title('u=-0.1');

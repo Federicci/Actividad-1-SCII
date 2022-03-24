@@ -91,12 +91,18 @@ hold on;
 plot(0.012,3.467338816,'x');
 plot(0.013,5.20835075,'x');
 plot(taprox,yaprox);
+title('Respuesta del voltaje del capacitor aproximada');
+xlabel('Tiempo');
+legend({'vc(t1)','vc(2t1)','vc(3t1','vc(t)'},'Location','southeast')
 
 %verifico que el sistema está bien aproximado
 figure
 plot(mediciones(:,1),mediciones(:,3));
 hold on;
 plot(taprox,yaprox); %Son muy parecidos, la aproximación es válida
+legend({'vc(t) real','vc(t) aprxoimada'},'Location','southeast')
+title('Contraste de respuestas');
+xlabel('Tiempo');
 
 %se verifica la corriente?
 
@@ -113,4 +119,7 @@ figure
 plot(yt,yout);
 hold on;
 plot(mediciones(:,1),mediciones(:,2)); %se verifica con los componentes obtenidos
+legend({'i(t) aproximada','i(t) real'},'Location','southeast')
+title('Contraste de respuestas');
+xlabel('Tiempo');
 

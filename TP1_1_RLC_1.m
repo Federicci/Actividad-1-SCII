@@ -42,10 +42,13 @@ for i=100:1:1000
         u(1,i)=-12;
     end
 end
-plot(t,u)
+%plot(t,u)
 
 %Simulación
+figure
 lsim(sys,u,t);
+title('Voltaje en el capacitor para 12v fluctuantes');
+legend({'vc(t)'},'Location','southeast')
 %Se observa la carga del capacitor que no llega a completarse
 
 %Para ver la corriente:
@@ -55,5 +58,8 @@ figure
 [ysim tsim]=lsim(sys,u,t); %el orden de magnitud de la corriente es mucho
 %menor al voltaje de entrada, grafico por separado
 plot(tsim,ysim);
+legend({'i(t)'},'Location','southeast')
+title('Corriente para 12v fluctuantes');
+xlabel('Tiempo');
 %se observa la caida exponencial de la corriente debido a la carga del
 %capacitor 
