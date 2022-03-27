@@ -52,9 +52,9 @@ plot(mediciones(:,1),mediciones(:,2),'r');
 
 %Prueba con valores arbitrarios (?)
 Ki=num(3);
-Laa=1.2;
-J=den(1)/Laa;
-Bm=0.0001;
+J=0.00003;
+Laa=den(1)/J;
+Bm=0.01;
 Ra=(den(2)-Laa*Bm)/J;
 Km=(den(3)-Ra*Bm)/Ki;
 
@@ -84,5 +84,41 @@ for i=2:1:(ts/deltat)
     variables(3,i)=variables(3,i-1)+deltat*variables(2,i-1);
 end
 
-plot(t,variables(2,:),'g');
+plot(t,variables(2,:),'g');   
+ 
+figure
+plot(mediciones(:,1),mediciones(:,3),'r');
+hold on; 
+plot(t, variables(1,:),'g')   %fin prueba con valores arbitrarios, no anduvo
+ 
+ 
+ti=0.0201;
+x1i=mediciones(3660,3);
+t1i=0.02025;
+x2i=mediciones(3661,3);
+t2i=0.02049;
+x3i=mediciones(3662,3);
+t3i=0.02076;
+ 
+%ALGORITMO DE CHEN para aproximación de FT de la forma
+%G(s)=K*(T3*s+1)/((T1*s+1)*(T2*s+1))
+gananciai=3.46e-14;
+k1i=x1i/gananciai-1;
+k2i=x2i/gananciai-1; 
+k3i=x3i/gananciai-1; 
+bi=4*k1i^3*k3i-3*k1i^2*k2i^2-4*k2i^3+k3i^2+6*k1i*k2i*k3i;
+alfa1i=(k1i*k2i+k3i-sqrt(bi))/(2*(k1i^2+k2i));
+alfa2i=(k1i*k2i+k3i+sqrt(bi))/(2*(k1i^2+k2i));
+betai=(2*k1i^3+3*k1i*k2i+k3i-sqrt(bi))/(sqrt(bi));
+T1i=-0.001/log(alfa1i);
+T2i=-0.001/log(alfa2i);
+T3i=betai*(T1i-T2i)+T1i;
 
+Gi=gananciai*(T3i*s+1)/((T1i*s+1)*(T2i*s+1));
+[numi,deni]=tfdata(Gi,'v');
+numi=numi/12;
+
+figure
+lsim(Gi,Va,t);
+hold on;
+plot(mediciones(:,1),mediciones(:,3),'r');
