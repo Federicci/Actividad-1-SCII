@@ -9,7 +9,7 @@ clear all, close all;
 
 m=0.1; F=0.1; l=0.6; g=9.8; M=0.5; 
 
-X01=[0 0 -0.01 0];
+X01=[0 0 pi/2 0];
 deltat=10^-4;
 ts=10;
 u=zeros(1,ts/deltat);

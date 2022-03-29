@@ -13,7 +13,7 @@ linealiza en el equilibrio estable o inestable
 %}
 
 m=0.1; F=0.1; l=0.6; g=9.8; M=0.5; 
-X0=[0 0 pi/2 0]; u0=[0];
+X0=[0 0 pi 0]; u0=[0];
 x1=X0(1);
 x2=X0(2);
 x3=X0(3);
@@ -42,7 +42,7 @@ u=zeros(1,ts/deltat);
 t=0:deltat:(ts-deltat);
 
 valoreslin=zeros(4,ts/deltat);
-X=[0 0 -0.01 0];
+X=[0 0 pi-0.1 0];
 
 for i=1:1:(ts/deltat)
     valoreslin(1,i)=X(1,1);
