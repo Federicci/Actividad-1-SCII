@@ -12,6 +12,8 @@ clc, clear all, close all;
 
 mediciones=xlsread('Curvas_Medidas_Motor.xls');
 %Columnas: Tiempo wr ia
+
+%wr_Va
 ti=0.02;
 x1=mediciones(3664,2);
 t1=0.02022;
@@ -84,25 +86,61 @@ for i=2:1:(ts/deltat)
     variables(3,i)=variables(3,i-1)+deltat*variables(2,i-1);
 end
 
-plot(t,variables(2,:),'g');   
+%plot(t,variables(2,:),'g');   
  
 figure
 plot(mediciones(:,1),mediciones(:,3),'r');
 hold on; 
 plot(t, variables(1,:),'g')   %fin prueba con valores arbitrarios, no anduvo
  
- 
-ti=0.0201;
-x1i=mediciones(3660,3);
-t1i=0.02025;
-x2i=mediciones(3661,3);
+% %ia_Va
+% ti=0.0201;
+% x1i=mediciones(3660,3);
+% t1i=0.02025;
+% x2i=mediciones(3661,3);
+% t2i=0.02049;
+% x3i=mediciones(3662,3);
+% t3i=0.02076;
+%  
+% %ALGORITMO DE CHEN para aproximación de FT de la forma
+% %G(s)=K*(T3*s+1)/((T1*s+1)*(T2*s+1))
+% gananciai=3.46e-14;
+% k1i=x1i/gananciai-1;
+% k2i=x2i/gananciai-1; 
+% k3i=x3i/gananciai-1; 
+% bi=4*k1i^3*k3i-3*k1i^2*k2i^2-4*k2i^3+k3i^2+6*k1i*k2i*k3i;
+% alfa1i=(k1i*k2i+k3i-sqrt(bi))/(2*(k1i^2+k2i));
+% alfa2i=(k1i*k2i+k3i+sqrt(bi))/(2*(k1i^2+k2i));
+% betai=(2*k1i^3+3*k1i*k2i+k3i-sqrt(bi))/(sqrt(bi));
+% T1i=-0.001/log(alfa1i);
+% T2i=-0.001/log(alfa2i);
+% T3i=betai*(T1i-T2i)+T1i;
+% 
+% Gi=gananciai*(T3i*s+1)/((T1i*s+1)*(T2i*s+1));
+% [numi,deni]=tfdata(Gi,'v');
+% numi=numi/12;
+% 
+% figure
+% lsim(Gi,Va,t);
+% hold on;
+% plot(mediciones(:,1),mediciones(:,3),'r');
+
+
+
+
+
+%wr_Tl
+ti=0.1;
+x1i=198.25-mediciones(6335,2);
+t1i=0.10011;
+x2i=198.25-mediciones(6347,2);
 t2i=0.02049;
-x3i=mediciones(3662,3);
+x3i=198.25-mediciones(6358,2);
 t3i=0.02076;
  
 %ALGORITMO DE CHEN para aproximación de FT de la forma
 %G(s)=K*(T3*s+1)/((T1*s+1)*(T2*s+1))
-gananciai=3.46e-14;
+gananciai=153.4;
 k1i=x1i/gananciai-1;
 k2i=x2i/gananciai-1; 
 k3i=x3i/gananciai-1; 
@@ -114,11 +152,9 @@ T1i=-0.001/log(alfa1i);
 T2i=-0.001/log(alfa2i);
 T3i=betai*(T1i-T2i)+T1i;
 
-Gi=gananciai*(T3i*s+1)/((T1i*s+1)*(T2i*s+1));
+Gi=gananciai/((T2i*s+1));
 [numi,deni]=tfdata(Gi,'v');
-numi=numi/12;
+numi=numi/0.075;
 
 figure
-lsim(Gi,Va,t);
-hold on;
-plot(mediciones(:,1),mediciones(:,3),'r');
+step(Gi)

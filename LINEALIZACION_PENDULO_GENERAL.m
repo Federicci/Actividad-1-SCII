@@ -13,7 +13,7 @@ linealiza en el equilibrio estable o inestable
 %}
 
 m=0.1; F=0.1; l=0.6; g=9.8; M=0.5; 
-X0=[0 0 0 0]; u0=[0];
+X0=[0 0 pi/2 0]; u0=[0];
 x1=X0(1);
 x2=X0(2);
 x3=X0(3);
