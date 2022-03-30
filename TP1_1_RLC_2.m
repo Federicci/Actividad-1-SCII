@@ -15,7 +15,7 @@ TP1_1_RLC_1
 %Constantes
 L=0.00001; %[H]
 C=0.0000001; %[F]
-R=5600; %[ohm]
+R=4700; %[ohm]
 
 %Matrices
 A=[-R/L -1/L; 1/C 0];
@@ -28,8 +28,8 @@ sys=ss(A,B,C,D)
 
 %Definicion de la entrada
 u=zeros(1,1000);
-paso=0.1/1000;
-t=0:paso:(0.1-paso);
+paso=0.01/1000;
+t=0:paso:(0.01-paso);
 
 signo=false;
 for i=100:1:1000

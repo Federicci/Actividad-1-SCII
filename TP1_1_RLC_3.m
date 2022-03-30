@@ -14,29 +14,6 @@ clc, clear all, close all;
 mediciones=xlsread('Curvas_Medidas_RLC.xls');
 %Columnas: Tiempo Corriente Vcap
 
-figure
-plot(mediciones(:,1),mediciones(:,2)); %Corriente
-figure
-plot(mediciones(:,1),mediciones(:,3)); %Vc -> escalón de 12v
-
-% %Constantes
-% L=1; %[H]   ->desconocido
-% Cap=1; %[F]   ->desconocido
-% R=1; %[ohm]   ->desconocido
-% 
-% %Matrices
-% A=[-R/L -1/L; 1/Cap 0];
-% B=[1/L; 0];
-% C=[1; 0]';
-% D=0;
-% 
-% %Definicion de la ecuación de estado y de salida (salida de corriente)
-% sys1=ss(A,B,C,D)
-% %Definicion de la ecuación de estado y de salida (salida de voltaje en cap)
-% C=[0; 1]';
-% sys2=ss(A,B,C,D)
-
-
 %Definicion de la entrada
 u=zeros(1,1000);
 paso=0.1/1000;

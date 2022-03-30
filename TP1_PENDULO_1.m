@@ -9,7 +9,7 @@ clear all, close all;
 
 m=0.1; F=0.1; l=0.6; g=9.8; M=0.5; 
 
-X01=[0 0 pi/2 0];
+X01=[0 0 -0.01 0];
 deltat=10^-4;
 ts=10;
 u=zeros(1,ts/deltat);
@@ -244,7 +244,7 @@ plot(t,valores(3,:));
 legend({'Linealizado','No lineal'},'Location','southwest')
 xlabel('Tiempo');
 ylabel('聲gulo respecto a la normal');
-title('聲gulo inicial = -0.01, equilibrio inestable, comparaci鏮');
+title('聲gulo inicial = -0.01, equilibrio inestable, comparaci鏮, m=0.01, l=1.2');
 %se observa la divergencia del sistema linealizado
 
 
@@ -323,7 +323,7 @@ plot(t,valores(3,:));
 legend({'Linealizado','No lineal'},'Location','southwest')
 xlabel('Tiempo');
 ylabel('聲gulo respecto a la normal');
-title('聲gulo inicial = pi-0.8, equilibrio estable, comparaci鏮');
+title('聲gulo inicial = pi-0.8, equilibrio estable, comparaci鏮, m=0.5, l=12');
 %se observa la divergencia del sistema linealizado
 
 
@@ -401,7 +401,7 @@ plot(t,valores(3,:));
 legend({'Linealizado','No lineal'},'Location','southwest')
 xlabel('Tiempo');
 ylabel('聲gulo respecto a la normal');
-title('聲gulo inicial = pi-0.8, equilibrio estable, comparaci鏮');
+title('聲gulo inicial = pi-0.8, equilibrio estable, comparaci鏮, m=0.01, l=0.6');
 %se observa la divergencia del sistema linealizado, aunque es mas lenta que
 %si l y m fueran mas grandes
 

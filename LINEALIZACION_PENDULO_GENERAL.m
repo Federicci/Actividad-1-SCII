@@ -42,7 +42,7 @@ u=zeros(1,ts/deltat);
 t=0:deltat:(ts-deltat);
 
 valoreslin=zeros(4,ts/deltat);
-X=[0 0 pi-0.1 0];
+X=[0 0 -0.01 0];
 
 for i=1:1:(ts/deltat)
     valoreslin(1,i)=X(1,1);
