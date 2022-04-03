@@ -12,10 +12,10 @@ drásticamente la velocidad, sistema muy simplificado
 w=2;
 a=0.05;
 b=5;
-c=1;
+c=100;
 deltat=10^-3;
 ts=20;
-u=-0.1;
+u=-0.01;
 h0=1000; %Altura inicial
 
 alpha_0=0; tita_0=0; titadif_0=0; h_0=0; %Cond. iniciales
